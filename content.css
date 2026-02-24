@@ -1,0 +1,111 @@
+/* Tab fullscreen mode */
+html.ytfs-active,
+html.ytfs-active body {
+  overflow: hidden !important;
+}
+
+html.ytfs-active #page-manager,
+html.ytfs-active ytd-watch-flexy,
+html.ytfs-active #full-bleed-container,
+html.ytfs-active #player-container-outer,
+html.ytfs-active #player-container-inner,
+html.ytfs-active #player-container,
+html.ytfs-active #movie_player,
+html.ytfs-active .html5-video-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  z-index: 2147483647 !important;
+  background: #000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.ytfs-active #movie_player video {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain !important;
+}
+
+/* Hide everything else when in tab fullscreen */
+html.ytfs-active #masthead-container,
+html.ytfs-active #guide,
+html.ytfs-active ytd-miniplayer,
+html.ytfs-active #secondary,
+html.ytfs-active #below,
+html.ytfs-active #comments,
+html.ytfs-active #related,
+html.ytfs-active #chat,
+html.ytfs-active ytd-engagement-panel-section-list-renderer {
+  display: none !important;
+}
+
+/* Show the bottom gradient and controls in tab fullscreen */
+html.ytfs-active .ytp-chrome-bottom {
+  opacity: 1 !important;
+  z-index: 2147483647 !important;
+}
+
+html.ytfs-active .ytp-gradient-bottom {
+  z-index: 2147483646 !important;
+}
+
+/* Make player act like it's in theater/fullscreen for control bar width */
+html.ytfs-active .ytp-chrome-bottom {
+  width: calc(100vw - 24px) !important;
+  left: 12px !important;
+}
+
+/* Tab fullscreen button styling */
+.ytfs-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  vertical-align: top;
+}
+
+.ytfs-button svg {
+  fill: #fff;
+  width: 24px;
+  height: 24px;
+  opacity: 0.9;
+  transition: opacity 0.1s;
+}
+
+.ytfs-button:hover svg {
+  opacity: 1;
+}
+
+.ytfs-button .ytfs-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(28, 28, 28, 0.9);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.ytfs-button:hover .ytfs-tooltip {
+  opacity: 1;
+}
