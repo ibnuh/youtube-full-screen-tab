@@ -69,16 +69,20 @@ html.ytfs-active #columns {
   margin-inline-start: 0 !important;
 }
 
-/* Show the bottom gradient and controls in tab fullscreen */
+/* Position the bottom gradient and controls in tab fullscreen */
 html.ytfs-active #movie_player .ytp-chrome-bottom {
   width: calc(100vw - 24px) !important;
   left: 12px !important;
-  opacity: 1 !important;
   z-index: 2147483647 !important;
 }
 
 html.ytfs-active #movie_player .ytp-gradient-bottom {
   z-index: 2147483646 !important;
+}
+
+/* Hide cursor when controls are auto-hidden, like native fullscreen */
+html.ytfs-active #movie_player.ytp-autohide {
+  cursor: none !important;
 }
 
 /* Tab fullscreen button styling */
