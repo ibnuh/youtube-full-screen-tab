@@ -3,7 +3,10 @@
   "name": "YouTube Tab Fullscreen",
   "version": "1.0.0",
   "description": "Makes YouTube videos fullscreen within the tab instead of OS fullscreen. Press ` (backtick) to toggle.",
-  "permissions": [],
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/*"],

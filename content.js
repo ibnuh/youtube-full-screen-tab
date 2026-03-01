@@ -2,7 +2,19 @@
   "use strict";
 
   let isTabFullscreen = false;
+  let interceptDoubleClick = true;
   const SHORTCUT_KEY = "`";
+
+  // Load settings
+  chrome.storage.local.get({ interceptDoubleClick: true }, (result) => {
+    interceptDoubleClick = result.interceptDoubleClick;
+  });
+
+  chrome.storage.onChanged.addListener((changes) => {
+    if (changes.interceptDoubleClick) {
+      interceptDoubleClick = changes.interceptDoubleClick.newValue;
+    }
+  });
 
   // SVG icons — "expand corners" to enter, "shrink corners" to exit
   const ICON_ENTER = `
@@ -90,6 +102,26 @@
         e.stopPropagation();
         toggle();
       }
+    },
+    true
+  );
+
+  // Hijack double-click on video to trigger tab fullscreen
+  document.addEventListener(
+    "dblclick",
+    (e) => {
+      if (!interceptDoubleClick) return;
+
+      const player = document.getElementById("movie_player");
+      if (!player || !player.contains(e.target)) return;
+
+      // Ignore clicks on controls
+      const controls = player.querySelector(".ytp-chrome-bottom");
+      if (controls && controls.contains(e.target)) return;
+
+      e.stopPropagation();
+      e.preventDefault();
+      toggle();
     },
     true
   );
